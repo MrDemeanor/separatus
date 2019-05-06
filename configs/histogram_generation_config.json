@@ -1,0 +1,5 @@
+{
+    "positive_folder": "positive", 
+    "negative_folder": "negative", 
+    "object_of_interest": "boat"
+}

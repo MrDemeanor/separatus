@@ -21,7 +21,7 @@ from math import floor
 import json
 
 # Open config file
-config = json.load("configs/histogram_generation_config.json")
+config = json.load(open("configs/histogram_generation_config.json"))
 
 # Initialize positive histogram
 positive_histogram = np.zeros((32, 32, 32))
@@ -88,5 +88,10 @@ for image in os.listdir("{}/{}".format(os.getcwd(), sample_images_dir)):
             negative_histogram[red, green, blue] = negative_histogram[red, green, blue] + 1
 
 # Save positive and negative histograms
-np.save("histograms/{}_positive_histogram.npy".format(config["object_of_interest"]), positive_histogram)
-np.save("histograms/{}_positive_histogram.npy".format(config["object_of_interest"]), negative_histogram)
+try:
+    np.save("histograms/{}_positive_histogram.npy".format(config["object_of_interest"]), positive_histogram)
+    np.save("histograms/{}_negative_histogram.npy".format(config["object_of_interest"]), negative_histogram)
+
+    print("Successfully made histograms!")
+except:
+    print("Could not create histograms")
