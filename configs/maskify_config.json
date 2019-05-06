@@ -1,0 +1,10 @@
+{
+    "dataset": "IPATCH", 
+    "threshold": 4.8E-1, 
+    "subsets": [
+        "train", 
+        "valdiation"
+    ], 
+    "positive_histogram": "", 
+    "negative_histogram": ""
+}

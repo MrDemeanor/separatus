@@ -1,0 +1,13 @@
+pip install pillow
+pip install numpy
+pip install opencv-python
+pip install jupyter
+pip install matplotlib
+pip install scikit-image
+pip install sklearn
+pip install cython
+pip install progress
+pip install git+https://github.com/philferriere/cocoapi.git#subdirectory=PythonAPI
+
+mkdir datasets
+mkdir histograms
