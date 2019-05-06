@@ -39,6 +39,7 @@ source requirements.txt
 ```
 
 For each dataset that you add in the datasets folder, you must have the following structure, being sure to name your annotation files *annotations.json* and your images folder *images*. __Note__ that the subfolders (called subsets in *maskify_dataset.py*) can be named anything. However it is imperative that the subfolders contain the annotations file and images folder. 
+
 ```
 datasets
 |-- ipatch
@@ -59,19 +60,35 @@ datasets
         |-- annotations.json
         `-- images
 ```
-Now you can edit *maskify_config.json*. Set *dataset* equal to the name of your datasets folder, and a threshold value. For iPATCH, we found that a threshold of 0.48 was sufficient. 
+
+Create the positive and negative histograms. First, edit *histogram_generation_config*. Let's say we are segmenting boats. Specifiy a folder that contains images who's pixels only pertain to boats. Then, specify a folder that contains non-boats, or negative examples of boats. Then, set the *object_of_interest* to say __boat__. 
+
+```json
+{
+    "positive_folder": "positive", 
+    "negative_folder": "negative", 
+    "object_of_interest": "boat"
+}
+```
+
+Run *create_histograms.py*. In the histograms folder, this will create a positive histogram called *boat_positive_histogram.npy* and a negative histogram called *boat_negative_histogram.py*. 
+```bash
+python create_histograms.py
+```
+
+Now you can edit *maskify_config.json*. Set *dataset* equal to the name of your datasets folder, and a threshold value. For iPATCH, we found that a threshold of 0.48 was sufficient. Alternatively, you can set the threshold to *'auto'*, which will set the threshold to be the median value of the resulting numpy array. 
 
 ```json
 {
     "dataset": "IPATCH", 
-    "threshold": 4.8E-1, 
+    "threshold": 4.8E-1,
     "subsets": [
         "train", 
         "valdiation", 
         "test"
     ], 
-    "positive_histogram": "", 
-    "negative_histogram": ""
+    "positive_histogram": "boat_positive_histogram.npy", 
+    "negative_histogram": "boat_negative_histogram.npy"
 }
 ```
 
