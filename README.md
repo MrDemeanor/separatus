@@ -81,7 +81,7 @@ python maskify_dataset.py
 ```
 
 The script will generate the new annotation files and place them in your dataset's train and validation folders. 
-```bash
+```
 datasets
 |-- ipatch
     |-- train
@@ -96,4 +96,11 @@ datasets
         |--annotations.json
         |--annotations_maskified.json
         `--images
+```
+
+## Demo.ipynb
+To get a demonstration on how each image is being segmented, launch jupyter notebook and nativate to demo.ipynb. 
+
+```bash
+jupyter notebook
 ```
